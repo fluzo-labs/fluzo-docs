@@ -1,0 +1,10 @@
+/book/
+/.tools/
+/mermaid.min.js
+/mermaid-init.js
+/.fluzo
+/.fluzodrive/
+/.env
+/.env.*
+__pycache__/
+*.pyc

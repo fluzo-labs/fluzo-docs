@@ -1,0 +1,22 @@
+name: Documentation issue
+description: Report a specification, guide or website problem.
+title: "[Docs] "
+labels: ["type:docs", "area:docs"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and affected document
+      description: Link to the section/revision and explain the problem without sensitive data.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected clarification or outcome
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Related issue or architecture decision
