@@ -1,6 +1,6 @@
 # Fluzo GitHub Organization and Backlog
 
-**Status:** Repositories, documentation site and 33 issues published; organization Project awaiting authorization
+**Status:** Repositories, documentation site, 33 issues and organization Project published
 **Version:** 0.2
 **Date:** 2026-09-24
 **Product owner:** Jose Corral
@@ -13,7 +13,7 @@ Create a GitHub organization with two initial repositories: `fluzo` for the impl
 
 A crate is a compilation/dependency boundary; a repository is a source-control, contribution and release boundary. Accepted A01/A02 require separable components, not separate repositories. A runtime/TUI change should normally be implementable, reviewed and tested in one pull request. Avoid independent versioning, cross-repository dependency pins and coordinated release trains until there is an actual need.
 
-This document defines repository governance and the initial backlog, not new product features. On 2026-09-24, Jose Corral authorized the public `fluzo-labs/fluzo` and `fluzo-labs/fluzo-docs` repositories, documentation publication through mdBook/GitHub Pages, and issue/Project provisioning. The user created the organization; authenticated membership for `jmanuelcorral` was verified as active administrator. Both repositories, the site and the seed issues are now published. The organization Project still requires the GitHub CLI `project` authorization scope. See [PUBLICATION.md](PUBLICATION.md) for verified resources and remaining work. This authorization does not approve an application release or implementation work beyond repository/documentation setup.
+This document defines repository governance and the initial backlog, not new product features. On 2026-09-24, Jose Corral authorized the public `fluzo-labs/fluzo` and `fluzo-labs/fluzo-docs` repositories, documentation publication through mdBook/GitHub Pages, and issue/Project provisioning. The user created the organization; authenticated membership for `jmanuelcorral` was verified as active administrator. Both repositories, the site, the seed issues and the public [Fluzo Delivery Project](https://github.com/orgs/fluzo-labs/projects/1) are published. The account owner supplied the required Project authorization directly through GitHub; no credentials are stored in this repository. See [PUBLICATION.md](PUBLICATION.md) for verified resources and views. This authorization does not approve an application release or implementation work beyond repository/documentation setup.
 
 ## 2. Organization and Repository Map
 
@@ -92,11 +92,11 @@ An implementation milestone records the exact documentation commit used as its b
 
 A scope/security/defaults change starts with an explicit specification/design review in `fluzo-docs`, linked to any implementation issue/PR in `fluzo`. Merge the approved design first or record an explicit dependency; do not require mutually blocking PRs. Pure implementation corrections inside the approved contract do not need a new PRD version. Behavior-facing changes include a guide follow-up or linked documentation PR before release. Use commit/tag links when recording acceptance evidence.
 
-Keep this organization plan in `fluzo-docs` after migration. The seeded backlog below is an import proposal: once issues exist, their status, assignees and dependencies are authoritative. Do not maintain two conflicting progress trackers.
+Keep this organization plan in `fluzo-docs`. The seeded backlog below records the imported scope; the live issues and Project fields own delivery status, assignees and dependency triage. Do not maintain a second Markdown status board.
 
 ## 4. Organization-Level Project
 
-Create one GitHub Project owned by the organization, provisionally named **Fluzo Delivery**. Projects provide views over repository issues; they are not another repository or the canonical task database. Public contributors should be able to find the owning issues even if the chosen Project visibility is restricted.
+The public organization-level [Fluzo Delivery](https://github.com/orgs/fluzo-labs/projects/1) Project contains the existing 33 issues from both linked repositories. Projects provide views over repository issues, not another repository or duplicate tasks. The [MVP board](https://github.com/orgs/fluzo-labs/projects/1/views/2) groups work by Status; an All issues table and six focused views provide alternative ways to inspect the same backlog.
 
 Use these initial fields without duplicating information already supplied by GitHub:
 
@@ -112,6 +112,8 @@ Use these initial fields without duplicating information already supplied by Git
 Use built-in repository, labels, assignees and linked-PR information rather than manually copied text fields. Keep the field set small. Add iterations or dates only when there is an actual delivery cadence, not speculative deadlines for an unimplemented MVP.
 
 Recommended views are: MVP board grouped by status; Ready ordered by priority/dependency; blocked work; TUI/design review; runtime/security; documentation; and Post-MVP. Filters distinguish a prototype demonstration from completed runtime behavior. A successful demo is not a release-ready task engine.
+
+All eight views are provisioned and linked in [PUBLICATION.md](PUBLICATION.md). Priority, Delivery, Area, Status and Blocked were initialized from the seed metadata and current issue/dependency state. Size remains unset until actual triage, and no people were assigned automatically. Blocked is a planning snapshot: review it and Ready when prerequisites change; this setup does not install a scheduler or claim continuous dependency-field automation. The empty Post-MVP view does not introduce future issues or release gates.
 
 GitHub repository milestones are repository-scoped. Use the Project's Delivery field for the shared cross-repository milestones, and reserve repository milestones for concrete release tracking where useful. Application tags, PRD versions and architecture document versions must not be inferred from each other.
 
@@ -177,7 +179,7 @@ Release artifacts belong to `fluzo`; the documentation site belongs to `fluzo-do
 
 ## 6. Seed Backlog
 
-The following briefs were imported as 33 GitHub issues, with the seed-to-issue mapping in [PUBLICATION.md](PUBLICATION.md). GitHub issues now own status, assignees and actual dependency relationships; this table retains the seed scope, not a second status board. No assignees were selected automatically. The `MVP` milestone is present in each repository; Delivery/Priority metadata remains in issue bodies until the organization Project can be provisioned. Dependencies mean prerequisite accepted behavior, not permission to bypass a safety gate. Milestones are exit checkpoints; independent work may start earlier when its prerequisites are satisfied.
+The following briefs were imported as 33 GitHub issues, with the seed-to-issue mapping in [PUBLICATION.md](PUBLICATION.md). GitHub issues and Project fields now own delivery status, assignees and dependency triage; this table retains the seed scope, not a second status board. No assignees were selected automatically. The `MVP` milestone is present in each repository, and Delivery/Priority fields are populated in the shared Project. Dependencies mean prerequisite accepted behavior, not permission to bypass a safety gate. Milestones are exit checkpoints; independent work may start earlier when its prerequisites are satisfied.
 
 These entries seed the backlog rather than replace PRD section 53. Before marking a delivery issue Ready, split it if necessary and expand its acceptance criteria using the linked specification sections. Before calling the backlog complete, map every MVP acceptance requirement to an owning issue and evidence; omit no requirement just because it is not a row below.
 
@@ -305,7 +307,7 @@ Organization `.github`, package-manager distribution repositories or a domain/si
 
 Provisioning is idempotent in intent: inspect existing resources before creating/updating them and report conflicts rather than deleting an organization/repository/Project. The published importer detects existing seed IDs and preserves issue bodies/states; native dependency updates only add missing links. Provisioning within the agreed resources is user-authorized; deleting resources, changing visibility, publishing runtime releases or rewriting history requires separate authorization.
 
-## 9. Confirmed Decisions and Remaining Access
+## 9. Confirmed Decisions
 
 | Decision | Proposed default | Status |
 | -------- | ---------------- | ------ |
@@ -314,7 +316,7 @@ Provisioning is idempotent in intent: inspect existing resources before creating
 | Visibility | Public repositories, backlog and documentation | Explicitly approved by the user |
 | Organization owner | Jose Corral, GitHub `jmanuelcorral` | Active administrator verified |
 | Docs engine / publication | mdBook and GitHub Pages | Built, deployed and checked; Mermaid diagrams render |
-| Backlog home | Organization Project with issues in their owning repository | 33 issues and 60 native dependencies created; Project requires additional CLI authorization |
+| Backlog home | Public Fluzo Delivery Project with issues in their owning repository | 33 existing issues, six configured fields and eight views; 60 native dependencies preserved |
 | Runtime/core/TUI split | Four crates in one implementation repository | Approved organization topology; runtime implementation remains pending |
 
 No new PRD scope revision is needed merely to choose GitHub hosting and issue organization. If the repository plan introduces extra runtime features, mandatory cloud services or new release gates beyond the approved contracts, stop and review those changes explicitly.

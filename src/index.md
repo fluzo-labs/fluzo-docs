@@ -19,7 +19,7 @@ depend on access to a private inference service.
 - [Product requirements](PRD.md): approved MVP scope, future capabilities and acceptance criteria.
 - [Architecture](ARCHITECTURE.md): component boundaries, accepted decisions and verification contracts.
 - [Organization and backlog](GITHUB_ORGANIZATION.md): ownership and the issue seed plan.
-- [Publication record](PUBLICATION.md): repository, issue and validation links, including remaining Project authorization.
+- [Publication record](PUBLICATION.md): repository, issue, Project view and validation links.
 
 ## Repositories
 
@@ -27,6 +27,7 @@ depend on access to a private inference service.
 - [fluzo-labs/fluzo-docs](https://github.com/fluzo-labs/fluzo-docs): canonical specifications and this site.
 - [Implementation issues](https://github.com/fluzo-labs/fluzo/issues)
 - [Documentation issues](https://github.com/fluzo-labs/fluzo-docs/issues)
+- [Fluzo Delivery board](https://github.com/orgs/fluzo-labs/projects/1/views/2)
 
 Examples in the specifications are design contracts, not installation
 instructions for an existing application. Original content is MIT licensed,

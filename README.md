@@ -11,7 +11,8 @@ The documentation describes requirements, not features already delivered.
 - [Product requirements](PRD.md)
 - [Architecture and accepted decisions](ARCHITECTURE.md)
 - [Organization and seed backlog](GITHUB_ORGANIZATION.md)
-- [Published repositories, issue mapping and remaining access](PUBLICATION.md)
+- [Published repositories, issue mapping and Project views](PUBLICATION.md)
+- [Fluzo Delivery board](https://github.com/orgs/fluzo-labs/projects/1/views/2)
 - [Implementation repository](https://github.com/fluzo-labs/fluzo)
 - [Documentation issues](https://github.com/fluzo-labs/fluzo-docs/issues)
 
