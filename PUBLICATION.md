@@ -17,6 +17,7 @@ released Fluzo runtime yet.
 | Implementation repository | [fluzo](https://github.com/fluzo-labs/fluzo) |
 | Canonical specifications and site source | [fluzo-docs](https://github.com/fluzo-labs/fluzo-docs) |
 | Documentation site | [fluzo-labs.github.io/fluzo-docs](https://fluzo-labs.github.io/fluzo-docs/) |
+| Organization Project | [Fluzo Delivery](https://github.com/orgs/fluzo-labs/projects/1) |
 | Initial documentation baseline | [60c5b0732fb710cdf705476cee8d9156a5ecd971](https://github.com/fluzo-labs/fluzo-docs/commit/60c5b0732fb710cdf705476cee8d9156a5ecd971) |
 | Implementation metadata baseline | [d31a16472abc998898a6b90cc9af942340894119](https://github.com/fluzo-labs/fluzo/commit/d31a16472abc998898a6b90cc9af942340894119) |
 | Initial documentation CI and Pages | [Successful workflow](https://github.com/fluzo-labs/fluzo-docs/actions/runs/36001597633) |
@@ -93,21 +94,34 @@ python3 scripts/sync_backlog.py --apply --link-dependencies \
 No token is written to a report or repository. The script invokes the already
 authenticated GitHub CLI; it does not request credentials itself.
 
-## Remaining Project Authorization
+## Fluzo Delivery Project
 
-The organization-level **Fluzo Delivery** Project has not been created. The
-authenticated GitHub CLI token lacks `project` permission, and the integrated
-browser has no authenticated GitHub session. Repository/issues/Pages operations
-were authorized and completed independently.
+The account owner completed Project authorization directly with GitHub on
+2026-09-24. The public organization-level
+[Fluzo Delivery](https://github.com/orgs/fluzo-labs/projects/1) Project now links
+both repositories and contains all 33 existing issues, without duplicating or
+rewriting them. Native dependencies remain the same 60 relationships.
 
-The account owner can authorize the additional scope directly with GitHub:
+Six fields are configured: Status, Priority, Delivery, Area, Size and Blocked.
+Status has Backlog, Ready, In progress, In review and Done. Priority, Delivery
+and Area reflect the seed plan. Initial Status reflects known completion or
+active work; Blocked reflects open prerequisites. Size and assignees remain
+unset rather than inventing estimates or allocating people.
 
-```sh
-gh auth refresh --hostname github.com --scopes project
-```
+| View | Purpose |
+| ---- | ------- |
+| [All issues](https://github.com/orgs/fluzo-labs/projects/1/views/1) | Table of the complete linked backlog |
+| [MVP board](https://github.com/orgs/fluzo-labs/projects/1/views/2) | Status columns, excluding Post-MVP work |
+| [Ready](https://github.com/orgs/fluzo-labs/projects/1/views/3) | Open Ready work with no recorded blocker, ordered by priority/delivery |
+| [Blocked](https://github.com/orgs/fluzo-labs/projects/1/views/4) | Open blocked issues grouped by delivery stage |
+| [TUI and design](https://github.com/orgs/fluzo-labs/projects/1/views/5) | TUI and configuration work grouped by status |
+| [Runtime and security](https://github.com/orgs/fluzo-labs/projects/1/views/6) | Core, runtime, security, provider and storage work grouped by area |
+| [Documentation](https://github.com/orgs/fluzo-labs/projects/1/views/7) | Issues owned by fluzo-docs, grouped by status |
+| [Post-MVP](https://github.com/orgs/fluzo-labs/projects/1/views/8) | Explicitly deferred work; initially empty |
 
-After authorization, create the public organization Project, configure the
-agreed fields/views and attach the existing 33 issues. Do not recreate the
-backlog or infer Project access from organization administrator status alone.
-Track the remaining governance work in
+These are views of the same issues, not separate boards to synchronize. Blocked
+and Ready need maintainer triage when dependency states change; no automatic
+scheduling or continuous dependency-field refresh is implied. Project creation
+does not start implementation or authorize a release. Governance evidence and
+the reviewed publication update are tracked by
 [ORG-02](https://github.com/fluzo-labs/fluzo-docs/issues/2).
