@@ -65,7 +65,8 @@ def validate_source(path):
     sensitive_patterns = (
         r"(?:gh[pousr]_|github_pat_)[A-Za-z0-9_]{20,}",
         r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----",
-        r"(?:totoshome\.duckdns\.org|/home/jose/)",
+        r"https?://(?:[A-Za-z0-9-]+\.)+duckdns\.org\b",
+        r"/home/[A-Za-z0-9_.-]+/",
     )
     for pattern in sensitive_patterns:
         require(not re.search(pattern, text), f"Potential private data in {path.name}; inspect locally")
@@ -94,7 +95,10 @@ def main():
         require('class="mermaid"' in architecture, "Architecture diagrams were not preprocessed")
         require("{{#include" not in architecture, "Unresolved book include")
         require(not (options.book / ".git").exists(), "Git metadata must not be published")
-    print("PASS: canonical documents, TOML/JSON, local links, privacy scan, 33 issue dependencies and book assets")
+    checks = "canonical documents, TOML/JSON, local links, privacy scan and 33 issue dependencies"
+    if options.book:
+        checks += ", plus generated book assets"
+    print(f"PASS: {checks}")
 
 
 if __name__ == "__main__":

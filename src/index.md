@@ -19,6 +19,7 @@ depend on access to a private inference service.
 - [Product requirements](PRD.md): approved MVP scope, future capabilities and acceptance criteria.
 - [Architecture](ARCHITECTURE.md): component boundaries, accepted decisions and verification contracts.
 - [Organization and backlog](GITHUB_ORGANIZATION.md): ownership and the issue seed plan.
+- [Publication record](PUBLICATION.md): repository, issue and validation links, including remaining Project authorization.
 
 ## Repositories
 
