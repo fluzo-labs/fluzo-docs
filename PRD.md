@@ -1363,14 +1363,19 @@ The animation clock MUST be independent of model tokens, tool execution, and tel
 
 The MVP prototype MUST include a keyboard-accessible, searchable Developer Menu for tuning visual behavior without rebuilding the application. It MUST be enabled with `fluzo --dev-menu` or saved `tui.dev_menu = true` in `.fluzo`, and opened through the command palette. `--no-dev-menu` disables it for an invocation. It is disabled by default, available in ordinary developer installations rather than only debug builds, and MUST NOT depend on an external feature-flag service or model availability.
 
-The menu MUST distinguish typed presentation settings from boolean experimental UI flags and the explicitly permitted Laya shadow-observer control. The initial controls MUST cover:
+**Proposed D0 catalog revision, pending product-owner review:** the required/optional split below replaces the previous requirement for additional customization controls only if this design change is approved. It does not authorize application changes or declare the current prototype complete. The selected visual reference in section 29.2.1 remains unchanged.
 
-* animation FPS (0 through 60), reduced motion, logo pulse speed/intensity within safe non-flashing bounds, and implemented compact logo variants
-* theme selection and a small set of accent/contrast presets, without requiring a full theme editor
-* in-app notification duration and maximum visible stack within validated layout limits, plus notification enablement preferences
-* implemented layout-density and tool-detail presentation variants
+The menu MUST distinguish typed presentation settings from boolean experimental UI flags and the explicitly permitted Laya shadow-observer control. The required controls cover:
+
+* animation FPS (0 through 60) and reduced motion, retaining the current motion behavior and safe non-flashing state transitions
+* selection between the default and high-contrast themes, retaining their reviewed palettes
+* notification enablement preferences, without weakening explicit external-delivery opt-in or capability/focus checks
 * a rendering diagnostics overlay with aggregate redraw cadence, frame duration, and skipped-frame counts, clearly distinguished from display FPS
-* Laya observation enable/disable via `decision.enabled`, with capacity reservation, effective status, and shared-resource warnings visible
+* Laya observation enable/disable via `decision.enabled`, with capacity reservation, effective status, and shared-resource warnings visible when the real capability is integrated; an isolated prototype MUST NOT fake an operational control
+
+Additional pulse speed/intensity controls, manual compact/wide logo selection, extra accent/contrast presets, layout-density selectors and tool-detail presentation variants are OPTIONAL customization, not MVP acceptance gates under this proposal. Responsive artwork/layout and existing tool expansion/collapse remain required behavior; making their extra selectors optional does not remove them. No new artwork, palette, variant or animation parameter is selected here. Implementing any optional control requires an explicit product-owner request, reviewed safe ranges/options and shared typed validation; only implemented variants may be offered.
+
+Notification duration and maximum visible stack MUST have validated finite bounds independently of whether the Developer Menu exposes steppers for them. Duplicating those steppers in this menu is OPTIONAL under this proposal. The existing persistent `tui.notifications.duration_seconds` and `tui.notifications.max_visible` settings remain supported and editable through the normal configuration workflow required by sections 26 and 30; this proposal does not remove their keys or bypass A06. Their current defaults of 5 seconds and 3 visible notices are retained, but do not constitute reviewed upper bounds. Overflow, deduplication, expiry and resize behavior still require verification under section 29.3; no new numeric limits are approved here.
 
 Boolean flags MUST use toggles, numeric settings MUST use bounded inputs/steppers, and enumerated settings MUST use selectors. Only implemented variants may appear as selectable features. Every entry MUST show its stable key, purpose, default, effective value, source, and whether it supports live application or requires restart. The settings/flag registry MUST define types, valid ranges, and defaults consistently for configuration loading and the menu; arbitrary configuration keys or executable expressions MUST NOT be accepted.
 
@@ -1386,9 +1391,11 @@ Applied changes MUST emit redacted configuration-change diagnostics, not per-fra
 
 At the PR #35 reference revision, the editable visual menu has four typed controls: theme (`default` or `high-contrast`), animation FPS (0 through 60), reduced motion and rendering diagnostics. Defaults remain the default theme, 60 FPS, reduced motion off and diagnostics off. The Developer Menu and external notifications remain disabled by default. Compact/wide artwork is responsive presentation, not an additional user-selectable variant. The separate synthetic notification text editor is not a persistent setting.
 
-The remaining control requirements above are retained, not implemented or authorized by this documentation change. Pulse speed/intensity bounds, selectable artwork/accent/density/tool variants and notification layout limits still require explicit product-owner review before implementation. Existing notification duration/stack defaults do not by themselves establish safe upper bounds or a completed in-app stack. Do not invent new ranges, options or defaults, expose unavailable features, or expand the current menu to satisfy an issue without that review. The typed implementation registry remains the source of implementation metadata, not a second schema maintained here.
+The proposed split narrows mandatory customization, not the safety and usability requirements. Shared Save/Apply/Cancel/Reset, provenance, CLI locks, pending-restart presentation where applicable, redacted diagnostics, bounded in-app notifications and acceptance evidence remain required. Real Laya consent/capacity integration remains later work, not a prerequisite for drawing the isolated prototype. These requirements do not authorize changing the reference appearance or behavior without an explicit product-owner request.
 
-[UI-02 D0](https://github.com/fluzo-labs/fluzo-docs/issues/7) therefore remains subject to control-catalog review and a reviewed immutable documentation revision; recording the confirmed identity and prototype boundary alone does not complete every D0 criterion.
+Do not invent ranges, options or defaults for optional controls that have not been requested. Notification layout limits remain a necessary design decision before stack implementation even if extra menu steppers are omitted. The typed implementation registry remains the source of implementation metadata, not a second schema maintained here.
+
+[UI-02 D0](https://github.com/fluzo-labs/fluzo-docs/issues/7) remains subject to approval of this proposed split, review of required notification bounds and a reviewed immutable documentation revision. Catalog review can record optional controls as not selected without inventing their ranges or implementing them. Existing issue criteria are not silently superseded: after design approval, their scoped reconciliation requires a separately authorized backlog update. This draft alone neither completes D0 nor authorizes C1-C4 execution.
 
 ### 29.2.3 Untrusted terminal content: MVP and future hardening
 
