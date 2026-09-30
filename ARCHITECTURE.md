@@ -486,6 +486,8 @@ Applying operational changes to active work is a separate explicit command. Pref
 
 Visual previews are temporary view state with explicit Apply/Save/Revert. CLI overrides remain visibly authoritative. The Laya devmenu switch is the narrow approved runtime exception, not permission for arbitrary dev flags to change security, budgets or routing. Unknown/retired keys produce diagnostics rather than unexpected enablement.
 
+The M2 prototype may verify presentation-only preview contracts with isolated fixtures, but a session-local preview is not evidence of file persistence, runtime application or consent. The Developer Menu must reuse the shared settings save/apply adapter, not implement a second configuration writer. An unavailable Laya capability cannot be made operational by a presentation toggle; its eventual control uses the same validated consent/capacity path as ordinary settings. Redacted configuration-change projections do not prove delivery through production diagnostic sinks.
+
 ### 10.3 Configuration Contract Acceptance
 
 The implementation must test that the typed default configuration, generated `.fluzo`, parsed round trip and TUI default values agree. Every supported persistent setting needs a descriptor and an authorized editing path; descriptor keys must resolve to real typed fields rather than permit arbitrary unknown keys. Dynamic entries such as model names use validated schema-defined collections, not unvalidated extra fields. Invalid field combinations must produce equivalent safe errors through file loading, headless commands and TUI submission, including when the client skips its own validation.
@@ -522,7 +524,9 @@ All untrusted display content passes through an incremental bounded sanitizer be
 
 The Tasks view sends separate inspect, cancel and force-stop commands. Selection does not resume or change composer destination invisibly. Approval controls have deliberate focus, show typed scope/duration, and cannot be activated by an Enter key carried over from normal typing. Notifications are overlays with bounded stacking and persistent task-state counterparts; they do not replace failure/approval state.
 
-Theme tokens, status semantics, high contrast, color fallbacks and reduced motion are shared across views. Original pixel artwork and the Crush reference inform visual review, not imported product source/artwork. Native notification/clipboard adapters are capability-dependent and may fall back without breaking the core workflow.
+Theme tokens, status semantics, high contrast, color fallbacks and reduced motion are shared across views. The selected original FLUZO wordmark and the Crush reference inform visual review, not imported product source/artwork. The reference appearance and explicit-change boundary are defined in PRD section 29.2.1; architectural integration does not authorize a visual redesign. Native notification/clipboard adapters are capability-dependent and may fall back without breaking the core workflow.
+
+For M2 component review, an isolated scenario host may supply owned runtime-shaped synthetic values through the core protocol to the same TUI presentation logic. The host, not inspection or rendering, owns scenario advancement. Keep this fixture path distinct from live mode and label it synthetic; it cannot authorize tools, forge real task outcomes or contact providers. Later integration must verify authoritative runtime updates through the application port, including snapshot/subscription consistency and failure states. This staging preserves A06/A07 and PRD 29.4 requirements rather than substituting a mock for runtime or performance acceptance.
 
 ### 12.3 Prototype Without a Second Runtime
 

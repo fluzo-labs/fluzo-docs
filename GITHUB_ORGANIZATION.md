@@ -212,6 +212,24 @@ These entries seed the backlog rather than replace PRD section 53. Before markin
 | UI-04 | `fluzo` | P1 | Tasks, permissions, diff and notification demo states | UI-01 | Selecting a task does not resume it; cancel/kill controls are distinct; permission focus is safe; content is sanitized; every simulated result is visibly synthetic. |
 | UI-05 | `fluzo` | P0 | First visual and interaction review | UI-02, UI-03, UI-04 | Attach PTY/snapshot evidence for specified viewports plus Ghostty/Alacritty recordings and Jose's review; log findings as issues rather than claiming runtime acceptance. |
 
+#### UI-02 design and acceptance ownership
+
+[UI-02 D0](https://github.com/fluzo-labs/fluzo-docs/issues/7) reconciles the selected FLUZO identity and the staged prototype boundary in PRD sections 29.2.1, 29.2.2 and 29.4. The existing visual reference remains unchanged; creation of refinement issues is not authorization to alter appearance or behavior. Control catalogs, safe ranges and new defaults require separate explicit review before implementation. This is a requirement-ownership map, not a second delivery-status table; GitHub remains authoritative for current state and dependencies.
+
+| Requirement or boundary | Owning work and evidence |
+| --- | --- |
+| Selected FLUZO identity and prototype-versus-live distinction | [D0](https://github.com/fluzo-labs/fluzo-docs/issues/7); review the canonical documentation diff and record its actual merged commit as the new immutable reference. A draft or issue number is not an approved specification revision. |
+| Remaining visual controls and notification preferences/isolated previews | [C1](https://github.com/fluzo-labs/fluzo/issues/36) and [C2](https://github.com/fluzo-labs/fluzo/issues/37), subject to D0 catalog review and an explicit implementation request; preserve the reviewed visual baseline. |
+| Configuration discovery and shared atomic save/apply | [UI-03](https://github.com/fluzo-labs/fluzo/issues/8) owns the adapter; [C3](https://github.com/fluzo-labs/fluzo/issues/38) connects developer preferences without another writer. UI-03 does not depend on UI-02 closure. |
+| UI-02 joint evidence and full visual-prototype review | [C4](https://github.com/fluzo-labs/fluzo/issues/39) verifies the parent slice; [UI-05](https://github.com/fluzo-labs/fluzo/issues/10) reviews UI-02/UI-03/UI-04 together. C4 must not depend on UI-05, which already depends on UI-02. |
+| Complete task/permission/notification scenarios | [UI-04](https://github.com/fluzo-labs/fluzo/issues/9); isolated notification preferences do not complete these workflows. |
+| Redacted configuration-change projections and diagnostic delivery | C3 owns the presentation contract; [OBS-01](https://github.com/fluzo-labs/fluzo/issues/13) owns production diagnostic sinks. Fixture evidence cannot claim sink delivery. |
+| Real Laya control with consent, reserved capacity and truthful effective status | [AGT-03](https://github.com/fluzo-labs/fluzo/issues/22), with its provider/admission prerequisites; no operational switch is faked in the prototype. |
+| Authoritative runtime-driven TUI/headless behavior | [REL-01](https://github.com/fluzo-labs/fluzo/issues/24); actual application-port integration must replace synthetic demo outcomes in live mode. |
+| Reference performance and final MVP acceptance | [REL-03](https://github.com/fluzo-labs/fluzo/issues/26) and [REL-02](https://github.com/fluzo-labs/fluzo/issues/25); PRD 49/53 targets and review gates remain unchanged. |
+
+M2 component review may use the isolated runtime-shaped fixtures defined in PRD 29.4 without waiting for real Laya or the native agent. This does not remove the complete simulator-based demo, integrated screen review or later runtime requirements. An implementation owner is not evidence that a requirement passed. Missing mandatory evidence remains a blocker at its applicable gate; closing children alone cannot establish parent or release acceptance.
+
 ### 6.4 M3: Diagnostics and Storage
 
 | ID | Repository | Priority | Deliverable | Depends on | Acceptance brief |
