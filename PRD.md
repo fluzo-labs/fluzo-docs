@@ -1163,6 +1163,23 @@ Connection tests require explicit user action and synthetic inputs, with finite 
 
 `fluzo init` explicitly invokes setup, with confirmation before replacing an existing file. Non-interactive startup without config MUST return a nonzero `configuration_required` result, not launch a wizard. Tests/demos MUST isolate their config and never modify the user's file. The wizard MUST explain that `.fluzo` can reveal infrastructure/preferences even without secrets; committing it or changing Git ignore rules is the user's decision.
 
+M2 configuration-write boundary: setup supports explicit offline creation
+of a missing configuration through atomic no-replace publication. If the
+destination appears before publication, creation fails with a conflict;
+it never silently becomes replacement.
+
+Replacing an existing configuration requires a supported host-controlled
+environment in which all writers follow the shared coordination protocol.
+Ordinary workspaces without established coordination remain read-only for
+replacement, including fluzo init. A user confirmation, writable path or
+successfully acquired advisory lock is not evidence of that coordination.
+
+This is an explicit M2 limitation, not fulfillment of unrestricted
+configuration replacement in the MVP. Creation does not grant subsequent
+replacement capability. Setup, normal settings and Developer Menu
+integration must expose the same limitation. Supporting replacement
+outside that environment requires a separately reviewed adapter contract.
+
 ## 26.2 TUI settings and limit changes
 
 The normal TUI MUST provide Configuration > Limits and Configuration > Models, without requiring devmenu. All configured execution, context, request, model/pool capacity, storage, and telemetry limits MUST be editable using typed controls with units, defaults, saved/effective values, provenance, and consequences. The UI MUST validate related constraints together and support Cancel and Restore defaults.
