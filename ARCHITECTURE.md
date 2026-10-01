@@ -488,11 +488,53 @@ Visual previews are temporary view state with explicit Apply/Save/Revert. CLI ov
 
 The M2 prototype may verify presentation-only preview contracts with isolated fixtures, but a session-local preview is not evidence of file persistence, runtime application or consent. The Developer Menu must reuse the shared settings save/apply adapter, not implement a second configuration writer. An unavailable Laya capability cannot be made operational by a presentation toggle; its eventual control uses the same validated consent/capacity path as ordinary settings. Redacted configuration-change projections do not prove delivery through production diagnostic sinks.
 
+Configuration persistence distinguishes read-only access, exclusive
+creation and coordinated replacement. Runtime owns these capabilities;
+configuration data and presentation controls cannot grant them. The CLI
+must not enable coordinated replacement in an ordinary workspace merely
+because the user confirmed a write. Initially, the controlled test host
+may exercise that capability; no production accreditation mechanism is
+implied.
+
+Exclusive creation publishes a validated complete candidate without
+overwriting any existing directory entry. It retains the adapter's
+supported path and filesystem restrictions and does not claim protection
+against hostile parent-directory mutation or later external edits.
+
+Explicit setup replacement uses the same runtime service, not another
+writer. Preparation binds the target, observed file identity/content and
+candidate revision to a confirmation. Preparation does not write files.
+Changes to those inputs invalidate confirmation.
+
+After confirmation, the worker checks the original under the supported
+coordination protocol and creates an independent, exclusively named,
+private backup of its exact bytes. Backup creation is bounded; content
+verification and required file/directory synchronization precede original
+replacement. Invalid TOML or encoding must not prevent byte-preserving
+backup within supported limits. Inaccessible, unsupported or oversized
+originals remain untouched.
+
+Backup failure prevents original replacement. A subsequent conflict
+preserves the current original and reports any retained backup. Failure
+after replacement remains explicitly uncertain and requires reconciliation.
+Neither cancellation after dispatch nor a lost acknowledgement implies
+rollback. No automatic restoration, replay, backup deletion or schema
+migration is introduced. Ordinary Save still rejects invalid input;
+explicit replacement uses a separately validated candidate.
+
 ### 10.3 Configuration Contract Acceptance
 
 The implementation must test that the typed default configuration, generated `.fluzo`, parsed round trip and TUI default values agree. Every supported persistent setting needs a descriptor and an authorized editing path; descriptor keys must resolve to real typed fields rather than permit arbitrary unknown keys. Dynamic entries such as model names use validated schema-defined collections, not unvalidated extra fields. Invalid field combinations must produce equivalent safe errors through file loading, headless commands and TUI submission, including when the client skips its own validation.
 
 Tests must distinguish Save from Apply to active work: saving valid future defaults does not reset consumed budgets or mutate active snapshots; a rejected active application leaves running settings unchanged and reports that saved values are still pending. Verify CLI precedence, preview rollback, restart-pending state, external file conflicts, failed/uncertain writes, sensitive-value redaction and consent invalidation. These are required implementation checks, not tests claimed to have run for this design document.
+
+Test exclusive creation against concurrent destination creation, stale
+confirmation after file or candidate changes, exact independent backups,
+backup name collisions and write/verification/synchronization failures,
+replacement conflicts, uncertain completion and cancellation before
+dispatch. Verify refusal of replacement without the required host
+capability. Controlled-host tests establish only the documented M2
+contract, not safe replacement in arbitrary user workspaces.
 
 ## 11. Context and Compaction
 
