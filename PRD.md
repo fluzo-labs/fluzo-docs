@@ -1202,6 +1202,34 @@ Redirect prohibition in section 42.1, finite timeouts, and the distinction
 between model discovery and potentially chargeable inference in this
 section continue to apply to name-resolved endpoints without exception.
 
+Amendment (operator decision, October 2026): the read-only-for-replacement
+restriction on ordinary workspaces is lifted for this product line.
+`.fluzo` is treated as a local working file that Fluzo itself owns. The
+application MAY replace an existing configuration whenever the user
+saves, and recovery from a bad save is delegated to Git rather than to an
+application-managed backup copy. This rests on the operator's stated
+expectation that the file is touched only through Fluzo and, at most,
+through Git. It is a trust decision, not a technical guarantee: a user
+confirmation, a writable path or a successfully acquired advisory lock
+still is not evidence of cross-process coordination.
+
+Because replacement is now permitted, outside mutation becomes a
+detect-and-inform problem instead of a write barrier. The runtime MUST
+notice that the file changed by something other than its own writes and
+MUST surface that before the operator's next save, offering a choice
+between adopting the outside version and keeping the local draft. A save
+that follows a noticed outside change MUST apply only the keys the
+operator edited on top of the file that is actually on disk, so unrelated
+outside changes survive rather than being clobbered. Detection MAY be
+polling based and MUST NOT require a new dependency. A failed probe MUST
+NOT be reported as an outside change, and an acknowledged notice MUST be
+able to resurface when the file moves again.
+
+This amendment replaces the expectation that ordinary workspaces refuse
+replacement. It does not weaken the atomic publication, supported
+path/filesystem restrictions, redaction or consent rules elsewhere in
+this section, and it does not make setup confirmation optional.
+
 ## 26.2 TUI settings and limit changes
 
 The normal TUI MUST provide Configuration > Limits and Configuration > Models, without requiring devmenu. All configured execution, context, request, model/pool capacity, storage, and telemetry limits MUST be editable using typed controls with units, defaults, saved/effective values, provenance, and consequences. The UI MUST validate related constraints together and support Cancel and Restore defaults.
