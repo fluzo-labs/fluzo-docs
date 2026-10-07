@@ -1180,6 +1180,28 @@ replacement capability. Setup, normal settings and Developer Menu
 integration must expose the same limitation. Supporting replacement
 outside that environment requires a separately reviewed adapter contract.
 
+M2 model-discovery boundary: a model endpoint MAY be identified by a DNS
+host name as well as by a literal loopback or private address. Host names
+are first-class inputs for catalog discovery, not rejected input. The client
+resolves the name itself and MUST preserve the original authority in the
+HTTP `Host` header so virtual-host and dynamic-DNS catalogs route correctly.
+The resolved address class is not restricted by the client: whether a name
+resolves to a loopback, private or public address is the operator's
+responsibility, not an enforced product boundary.
+
+This narrows neither the non-loopback HTTP exception above nor the secret
+handling rules. The explicit warned, endpoint-scoped exception required for
+non-loopback HTTP is not yet surfaced in the wizard: the operator's typed
+endpoint is recorded as an explicit choice, but no warning is displayed
+before the first request. That gap remains open and must be closed before
+this requirement is considered met.
+
+HTTPS remains unsupported for model discovery, so any credential reference
+travels over cleartext HTTP regardless of the resolved address class.
+Redirect prohibition in section 42.1, finite timeouts, and the distinction
+between model discovery and potentially chargeable inference in this
+section continue to apply to name-resolved endpoints without exception.
+
 ## 26.2 TUI settings and limit changes
 
 The normal TUI MUST provide Configuration > Limits and Configuration > Models, without requiring devmenu. All configured execution, context, request, model/pool capacity, storage, and telemetry limits MUST be editable using typed controls with units, defaults, saved/effective values, provenance, and consequences. The UI MUST validate related constraints together and support Cancel and Restore defaults.
