@@ -496,6 +496,27 @@ because the user confirmed a write. Initially, the controlled test host
 may exercise that capability; no production accreditation mechanism is
 implied.
 
+Amendment (operator decision, October 2026): for this workspace the CLI
+does select the replacing policy, named `LocalWorkspace`, on the
+operator's explicit instruction that `.fluzo` is a local file touched
+only through Fluzo and Git. The capability is still supplied by host
+wiring rather than by configuration data, a confirmation or an advisory
+lock, and the policy name records a trust assumption rather than a
+coordination guarantee. Recovery from a bad save is delegated to Git; the
+normal save path creates no application backup even though the backup
+machinery remains available to hosts that request it.
+
+The reconciliation requirement above is met by detection plus an explicit
+operator choice rather than by refusal. The worker polls the file identity
+and records the kind of outside change on the snapshot; the view presents
+reload and keep-ours. Reload adopts the outside bytes and discards the
+local draft. Keep-ours retains the draft, and a subsequent save rebases
+onto the file that is actually on disk and applies only the edited keys,
+so unrelated outside keys survive. The outside-change check must not
+advance the configuration version, otherwise the view's own stale-draft
+guard would reject the save it exists to perform. A failed probe keeps the
+last known state instead of reporting a change.
+
 Exclusive creation publishes a validated complete candidate without
 overwriting any existing directory entry. It retains the adapter's
 supported path and filesystem restrictions and does not claim protection
