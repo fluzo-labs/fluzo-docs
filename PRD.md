@@ -1191,10 +1191,30 @@ responsibility, not an enforced product boundary.
 
 This narrows neither the non-loopback HTTP exception above nor the secret
 handling rules. The explicit warned, endpoint-scoped exception required for
-non-loopback HTTP is not yet surfaced in the wizard: the operator's typed
-endpoint is recorded as an explicit choice, but no warning is displayed
-before the first request. That gap remains open and must be closed before
-this requirement is considered met.
+non-loopback HTTP is now surfaced in the wizard. The reference is the
+implementation integrated by [fluzo PR #61](https://github.com/fluzo-labs/fluzo/pull/61)
+and [fluzo PR #62](https://github.com/fluzo-labs/fluzo/pull/62), revision
+`ffabfea4a2d2ad5bf42dbb373e217950df32ca50`: a non-loopback endpoint stops at
+a cleartext warning step before any catalog request exists, because the
+endpoint is resolved and classified without opening a socket. The notice names
+the exact endpoint, the addresses the host resolved to and the address class,
+states that the transport is cleartext because HTTPS is unsupported for
+discovery, and reports whether an Authorization reference is attached without
+revealing the value it resolves to. Acceptance binds the request to that
+endpoint for the current run only, is held in process memory, is never written
+to `.fluzo`, and is invalidated at every edit of the URL. A class change
+between the probe and the connect aborts the request instead of reaching a
+different kind of address. Loopback endpoints skip the step, so local use
+gains no new friction. See fluzo `TUI.md` for the interaction contract and
+`CONFIGURATION.md` for the endpoint contract.
+
+The residual bound is recorded rather than closed. The gap between the address
+shown and the address used is bounded to a swap inside the same class; it is
+not eliminated. A host that resolves to nothing is reported as unresolved and
+cannot be accepted. The deterministic harness drives a loopback listener, so
+it proves the warning never appears on the local path but does not exercise
+the screen itself, and visual quality of the notice remains a human review
+gate.
 
 HTTPS remains unsupported for model discovery, so any credential reference
 travels over cleartext HTTP regardless of the resolved address class.
